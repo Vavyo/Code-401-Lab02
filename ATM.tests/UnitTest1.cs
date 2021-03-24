@@ -133,5 +133,34 @@ namespace ATM.tests
             Assert.Equal(10m, result);
         }
 
+        [Fact]
+        public void Deposit_returns_the_amount_added_to_balance()
+        {
+            // arange
+            decimal amount = 10m;
+            Program.Balance = 0m;
+
+            // act
+            decimal difference = Program.Balance;
+            decimal returned = Program.Deposit(amount);
+            difference = Program.Balance - difference;
+
+            // assert
+            Assert.Equal(difference, returned);
+        }
+
+        [Fact]
+        public void Deposit_returns_0_when_amount_is_negative()
+        {
+            // arange
+            decimal amount = -10m;
+            Program.Balance = 20m;
+
+            // act
+            decimal result = Program.Deposit(amount);
+
+            // assert
+            Assert.Equal(0m, result);
+        }
     }
 }
