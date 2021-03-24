@@ -31,6 +31,8 @@ namespace ATM
                 switch (command)
                 {
                     case "balance":
+                        decimal currentBal = ViewBalance();
+                        Console.WriteLine($"Current balance: ${currentBal}");
                         break;
                     case "withdraw":
                         break;
@@ -47,6 +49,11 @@ namespace ATM
                         break;
                 }
             }
+        }
+
+        private static decimal ViewBalance()
+        {
+            return Balance;
         }
     }
 }
