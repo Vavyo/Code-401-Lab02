@@ -1,7 +1,6 @@
 using System;
 using Xunit;
 using ATM;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ATM.tests
 {
