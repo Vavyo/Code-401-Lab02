@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    class Program
+    public class Program
     {
         static public decimal Balance;
         static void Main(string[] args)
@@ -31,6 +31,8 @@ namespace ATM
                 switch (command)
                 {
                     case "balance":
+                        decimal currentBal = ViewBalance();
+                        Console.WriteLine($"Current balance: ${currentBal}");
                         break;
                     case "withdraw":
                         break;
@@ -47,6 +49,11 @@ namespace ATM
                         break;
                 }
             }
+        }
+
+        public static decimal ViewBalance()
+        {
+            return Balance;
         }
     }
 }
