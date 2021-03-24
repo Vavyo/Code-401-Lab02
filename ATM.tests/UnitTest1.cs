@@ -101,5 +101,37 @@ namespace ATM.tests
             // assert
             Assert.Equal(0m, result);
         }
+
+        [Fact]
+        public void Withdraw_with_less_than_balance_amount_changes_balance_by_max()
+        {
+            // arange
+            decimal amount = 10m;
+            Program.Balance = 5m;
+
+            // act
+            decimal returned = Program.Withdraw(amount);
+            decimal result = Program.Balance;
+
+            // assert
+            Assert.Equal(0m, result);
+            Assert.Equal(5m, returned);
+        }
+
+        [Fact]
+        public void Withdraw_with_a_non_zero_balance_changes_balance_by_amount()
+        {
+            // arange
+            decimal amount = 10m;
+            Program.Balance = 20m;
+
+            // act
+            decimal returned = Program.Withdraw(amount);
+            decimal result = Program.Balance;
+
+            // assert
+            Assert.Equal(10m, result);
+        }
+
     }
 }

@@ -54,18 +54,21 @@ namespace ATM
 
         public static decimal Withdraw(decimal amount)
         {
-            decimal result = 0;
             if(amount < 0)
             {
-                result = 0;
+                return 0m;
             }
-            else if (amount > Balance)
+            if (amount > Balance)
             {
-                result = Balance;
-                Balance -= result;
+                amount = Balance;
+                Balance -= amount;
+            }
+            else if (amount <= Balance)
+            {
+                Balance -= amount;
             }
             
-            return result;
+            return amount;
         }
 
         public static decimal ViewBalance()
