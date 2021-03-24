@@ -38,6 +38,7 @@ namespace ATM
                         decimal amountDrawn = Withdraw(amount);
                         break;
                     case "deposit":
+                        decimal amountDeposited = Deposit(amount);
                         break;
                     case "help":
                         Console.WriteLine("balance - Display your current balance.");
@@ -50,6 +51,17 @@ namespace ATM
                         break;
                 }
             }
+        }
+
+        public static decimal Deposit(decimal amount)
+        {
+            if (amount < 0)
+            {
+                return 0m;
+            }
+            Balance += amount;
+
+            return amount;
         }
 
         public static decimal Withdraw(decimal amount)
