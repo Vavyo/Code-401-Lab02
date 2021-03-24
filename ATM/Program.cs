@@ -26,7 +26,11 @@ namespace ATM
                 }
                 catch (IndexOutOfRangeException e)
                 {
-                    command = null;
+                    amount = 0;
+                }
+                catch (FormatException e)
+                {
+                    amount = 0;
                 }
                 switch (command)
                 {
@@ -36,15 +40,21 @@ namespace ATM
                         break;
                     case "withdraw":
                         decimal amountDrawn = Withdraw(amount);
+                        Console.WriteLine($"Withdrew ${amountDrawn} from your balance.");
                         break;
                     case "deposit":
                         decimal amountDeposited = Deposit(amount);
+                        Console.WriteLine($"Deposited ${amountDeposited} into your account.");
+                        break;
+                    case "exit":
+                        active = false;
                         break;
                     case "help":
                         Console.WriteLine("balance - Display your current balance.");
                         Console.WriteLine("withdraw:[amount] - Withdraws [amount] from your account.");
                         Console.WriteLine("deposit:[amount] - Deposit [amount] into your account.");
-                        Console.WriteLine("help - Displays available commands");
+                        Console.WriteLine("help - Displays available commands.");
+                        Console.WriteLine("exit - Leaves the App.");
                         break;
                     default:
                         Console.WriteLine("Sorry, I don't understand... try 'help' for a list of commands!");
