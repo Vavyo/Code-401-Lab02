@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    class Program
+    public class Program
     {
         static public decimal Balance;
         static void Main(string[] args)
@@ -51,7 +51,7 @@ namespace ATM
             }
         }
 
-        private static decimal ViewBalance()
+        public static decimal ViewBalance()
         {
             return Balance;
         }
