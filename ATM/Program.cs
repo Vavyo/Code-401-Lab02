@@ -19,7 +19,7 @@ namespace ATM
                 string userInput = Console.ReadLine();
                 string[] splitInput = userInput.Split(':');
                 string command = splitInput[0];
-                decimal amount;
+                decimal amount = 0m;
                 try
                 {
                     amount = Convert.ToDecimal(splitInput[1]);
@@ -35,6 +35,7 @@ namespace ATM
                         Console.WriteLine($"Current balance: ${currentBal}");
                         break;
                     case "withdraw":
+                        decimal amountDrawn = Withdraw(amount);
                         break;
                     case "deposit":
                         break;
@@ -49,6 +50,25 @@ namespace ATM
                         break;
                 }
             }
+        }
+
+        public static decimal Withdraw(decimal amount)
+        {
+            if(amount < 0)
+            {
+                return 0m;
+            }
+            if (amount > Balance)
+            {
+                amount = Balance;
+                Balance -= amount;
+            }
+            else if (amount <= Balance)
+            {
+                Balance -= amount;
+            }
+            
+            return amount;
         }
 
         public static decimal ViewBalance()
