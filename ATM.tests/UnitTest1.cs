@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using ATM;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ATM.tests
 {
@@ -48,5 +49,58 @@ namespace ATM.tests
             Assert.Equal(expected, result);
         }
 
+        [Fact]
+        public void Withdraw_returns_a_decimal()
+        {
+            // arange
+            decimal input = 0m;
+
+            // act
+            decimal result = Program.Withdraw(input);
+
+            // assert
+            Assert.IsType(input.GetType(), result);
+        }
+
+        [Fact]
+        public void Withdraw_returns_0_when_withdrawing_with_no_balance()
+        {
+            // arange
+            decimal amount = 10m;
+            Program.Balance = 0m;
+
+            // act
+            decimal result = Program.Withdraw(amount);
+
+            // assert
+            Assert.Equal(0M, result);
+        }
+
+        [Fact]
+        public void Withdraw_returns_difference_when_withdrawing_more_than_balance()
+        {
+            // arange
+            decimal amount = 10m;
+            Program.Balance = 5m;
+
+            // act
+            decimal result = Program.Withdraw(amount);
+
+            // assert
+            Assert.Equal(5m, result);
+        }
+
+        [Fact]
+        public void Withdraw_returns_0_when_withdrawing_a_negative_balance()
+        {
+            // arange
+            decimal amount = -10m;
+
+            // act
+            decimal result = Program.Withdraw(amount);
+
+            // assert
+            Assert.Equal(0m, result);
+        }
     }
 }
